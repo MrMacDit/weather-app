@@ -17,7 +17,7 @@ pipeline {
     }
     post {
         always {
-            echo 'Always Post'
+            echo 'Always Post and clear folder'
             deleteDir()
         }
         changed {
