@@ -17,7 +17,7 @@ pipeline {
     }
     post {
         always {
-            echo 'Always Post'
+            echo 'Always Post12345'
             deleteDir()
         }
         changed {
