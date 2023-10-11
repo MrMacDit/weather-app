@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters {
-        choice(name:'Choice', choices:['One', 'Two', 'Three'], description: 'Please pick')
+        choice(name:'CHOICE', choices:['One', 'Two', 'Three'], description: 'Please pick')
     }
 
     stages {
@@ -14,7 +14,7 @@ pipeline {
             steps {
                 echo 'Git Clone'
                 sh "git clone https://github.com/MrMacDit/weather-app.git"
-                echo "Finished git cloning successfully"
+                echo "Finished git cloning successfully - ${params.CHOICE}"
             }
         }
     }
