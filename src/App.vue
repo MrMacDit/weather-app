@@ -1,24 +1,12 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
 import WeatherApp from "./views/WeatherApp.vue";
-import AboutTolu from "./views/AboutTolu.vue";
+// import AboutTolu from "./views/AboutTolu.vue";
 </script>
 
 <template>
-  <!-- <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">WeatherApp</RouterLink>
-      </nav>
-    </div>
-  </header> -->
-  <!-- <RouterView /> -->
   <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-12">
       <WeatherApp />
-    </div>
-    <div class="col-md-3">
-      <AboutTolu />
     </div>
   </div>
 </template>

@@ -1,24 +1,63 @@
 <template>
-  <div class="body" style="border: solid 2px white">
+  <div class="body">
     <div class="row">
-      <div class="col-md-6">
-        <p>Today is: {{ day }} in {{ locationRegion }}</p>
-        <p>{{ condition }} in {{ locationName }} city</p>
-        <section>{{ temperature }}oC</section>
+      <div class="col-md-4">
+        <AboutTolu />
       </div>
-      <!-- <div class="col-md-6"></div> -->
-      <div class="col-md-6">
-        <p>Humidity: {{ humidity }}</p>
-        <p>Air Pressure: {{ pressure }}</p>
-        <p>Wind Speed: {{ windSpeed }}</p>
-        <p>Wind Direction: {{ windDirection }}</p>
+      <div class="col-md-5">
+        <div v-if="condition == 'Partly cloudy'">
+          <img
+            src="../images/gifs/RiningVoyage.gif"
+            height="660"
+            width="900"
+            alt="Partly CLoudy"
+          />
+        </div>
+        <div v-else>
+          <img
+            src="../images/gifs/Sunny.gif"
+            height="660"
+            width="900"
+            alt="Sunny"
+          />
+        </div>
+      </div>
+      <div class="col-md-3 second-col">
+        <div>
+          <p>Today is: {{ day }} in {{ locationRegion }}</p>
+          <p>{{ condition }} in {{ locationName }} city</p>
+          <section>{{ temperature }}oC</section>
+        </div>
+        <hr style="color: white" />
+        <h4>Weather Details</h4>
+        <div class="weather-details">
+          <p>Humidity:</p>
+          <span>{{ humidity }}%</span>
+        </div>
+        <div class="weather-details">
+          <p>Air Pressure:</p>
+          <span>{{ pressure }}PS</span>
+        </div>
+        <div class="weather-details">
+          <p>Wind Speed:</p>
+          <span>{{ windSpeed }}KM/H</span>
+        </div>
+        <div class="weather-details">
+          <p>Wind Direction:</p>
+          <span>{{ windDirection }}</span>
+        </div>
+        <a href="http://google.com" target="_blank"
+          ><button class="btn btn-outline-primary btn-lg" href="google.com">
+            Let's go!
+          </button></a
+        >
       </div>
     </div>
-    <!-- <div class="row"></div> -->
   </div>
 </template>
 
 <script lang="ts">
+import AboutTolu from "./AboutTolu.vue";
 export default {
   name: "WeatherApp",
   data() {
@@ -37,13 +76,15 @@ export default {
       locationRegion: "",
     };
   },
+  components: {
+    AboutTolu,
+  },
   methods: {
     // API CALLS
     getLocation() {
       navigator.geolocation.getCurrentPosition(this.weatherAPI);
     },
     async weatherAPI(collect: any) {
-      console.log("DATA OO!!!!", collect);
       this.lat = collect.coords.latitude;
       this.long = collect.coords.longitude;
       const url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${this.lat}%2C${this.long}`;
@@ -69,23 +110,34 @@ export default {
         this.isDay = responseData.current.is_day;
         this.locationName = responseData.location.name;
         this.locationRegion = responseData.location.region;
-        console.log(
-          `condition: ${this.condition}, temperature: ${this.temperature}, day: ${this.day}, humidity: ${this.humidity}, pressure: ${this.pressure}, windDirection: ${this.windDirection}, windSpeed: ${this.windSpeed}, isDay: ${this.isDay}, locationName: ${this.locationName}, locationRegion: ${this.locationRegion}`
-        );
       } catch (error) {
-        console.log(error);
+        alert(error);
       }
     },
   },
-  mounted() {
+  async mounted() {
     this.getLocation();
-    // this.weatherAPI();
   },
 };
 </script>
 
 <style>
-.body {
+.weather-details {
   display: flex;
+  justify-content: space-between;
+  margin-top: 23px;
+}
+p {
+  margin: 0; /* Remove default margin from <p> */
+}
+.second-col {
+  min-height: 600px;
+  background-color: rgba(0, 0, 0, 0.863);
+  font-weight: bold;
+  padding: 40px;
+  text-align: center;
+}
+.body {
+  color: whitesmoke;
 }
 </style>

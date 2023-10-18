@@ -6,17 +6,17 @@
         Developer with over three years of hands-on experience in web
         development 🕵‍♂. My skill set encompasses HTML, CSS, JavaScript, and a
         deep proficiency in modern frontend frameworks like React and
-        Vue.js.🛠<br />
+        Vue.js.🛠<br /><br />
         My unique strength lies in my unwavering commitment to crafting user
         interfaces✔ that are not only visually captivating but also
-        exceptionally user-friendly👌. <br />I thrive in collaborative
+        exceptionally user-friendly👌. <br /><br />I thrive in collaborative
         environments, working seamlessly with designers, backend developers, and
         stakeholders to ensure the seamless integration of functionality and
-        aesthetics in our end products🤝🏼.<br /><br />
+        aesthetics in our end products🤝🏼.<br /><br /><br />
         If you're interested in reviewing my professional profile click on the
-        button below <br />
+        button below <br /><br />
         <a href="mailto:idowutolulope23@gmail.com"
-          >please don't hesitate to reach out. 😎😁</a
+          >please don't hesitate to reach out.</a
         >
       </p>
     </article>
@@ -28,22 +28,17 @@ export default {
 };
 </script>
 <style>
-#body {
-  border: 3px solid #f1f1f1;
-  padding-top: 12px;
-  margin-top: 12px;
-  margin-right: 12px;
-  background-image: url("../../src/images/tolulopeImage1.jpg");
-  background-position: center;
+.body {
+  background-image: url("../images/gifs/Self.gif");
   background-repeat: no-repeat;
-  background-size: cover;
+  min-height: 660;
 }
 .text {
-  background-color: rgb(241, 235, 235);
-  background-color: rgba(241, 235, 235, 0.4);
-  color: #121212;
+  margin-top: 20px;
+  padding: 18px;
+  background-color: rgba(0, 0, 0, 0.863);
+  color: whitesmoke;
   text-align: justify;
   font-weight: bold;
-  /* z-index: 2; */
 }
 </style>
