@@ -1,12 +1,45 @@
 <template>
-  <div>
+  <div class="body">
     <div>
-      <label for="email">Email: {{ name }}</label>
-      <input type="text" name="email" id="email" />
-    </div>
-    <div>
-      <label for="password">Password:</label>
-      <input type="text" name="password" id="password" />
+      <!-- Users Email -->
+      <div class="form-group row">
+        <label for="Signemail" class="col-sm-2 col-form-label">Email:</label>
+        <div class="col-sm-10">
+          <input
+            type="email"
+            class="form-control"
+            id="Signemail"
+            placeholder="john@doe.com"
+          />
+        </div>
+      </div>
+
+      <!-- User's Password -->
+      <div class="form-group row">
+        <label for="password" class="col-sm-2 col-form-label">Password:</label>
+        <div class="col-sm-10">
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="************"
+          />
+        </div>
+      </div>
+
+      <div>
+        <p style="color: grey; text-align: center">
+          <em
+            ><b
+              >Please note, a notification will be sent to the owner of the page
+              of your presence?</b
+            ></em
+          >
+        </p>
+      </div>
+      <div class="button-div">
+        <button class="btn btn-primary">Log In</button>
+      </div>
     </div>
   </div>
 </template>
@@ -15,9 +48,28 @@
 export default {
   name: "Login",
   data() {
-    return {
-      name: "tolulope",
-    };
+    return {};
   },
 };
 </script>
+
+<style scoped>
+.body {
+  background-color: rgba(61, 125, 128, 0.089);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25vh;
+  color: whitesmoke;
+}
+.row {
+  margin: 15px auto;
+  padding-top: 12px;
+}
+.button-div {
+  width: 15%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 12px;
+}
+</style>

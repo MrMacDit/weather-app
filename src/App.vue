@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import WeatherApp from "./views/WeatherApp.vue";
-// import AboutTolu from "./views/AboutTolu.vue";
 </script>
 
 <template>

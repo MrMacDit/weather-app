@@ -1,32 +1,11 @@
 <template>
   <div class="body">
     <div class="row">
-      <div class="col-md-4">
-        <AboutTolu />
-      </div>
-      <div class="col-md-5">
-        <div v-if="condition == 'Partly cloudy'">
-          <img
-            src="../images/gifs/RiningVoyage.gif"
-            height="660"
-            width="900"
-            alt="Partly CLoudy"
-          />
-        </div>
-        <div v-else>
-          <img
-            src="../images/gifs/Sunny.gif"
-            height="660"
-            width="900"
-            alt="Sunny"
-          />
-        </div>
-      </div>
-      <div class="col-md-3 second-col">
+      <div class="col-md-4 first-col">
         <div>
           <p>Today is: {{ day }} in {{ locationRegion }}</p>
           <p>{{ condition }} in {{ locationName }} city</p>
-          <section>{{ temperature }}oC</section>
+          <section>{{ temperature }}°C</section>
         </div>
         <hr style="color: white" />
         <h4>Weather Details</h4>
@@ -52,16 +31,53 @@
           </button></a
         >
       </div>
+
+      <!-- LOGIN -->
+      <div class="col-md-8">
+        <div class="second-col">
+          <div class="col-md-12 button-div">
+            <button
+              :onclick="toLogin"
+              :class="
+                logInUser
+                  ? 'btn btn-outline-success'
+                  : 'btn btn-outline-warning'
+              "
+            >
+              Log in
+            </button>
+            <button
+              :onclick="toSignIn"
+              :class="
+                signUpUser
+                  ? 'btn btn-outline-success'
+                  : 'btn btn-outline-warning'
+              "
+            >
+              Sign in
+            </button>
+          </div>
+          <div v-show="logInUser">
+            <logUserIn />
+          </div>
+          <div v-show="signUpUser">
+            <signUserIn />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import AboutTolu from "./AboutTolu.vue";
+import Login from "./Login.vue";
+import SignIn from "./SignIn.vue";
 export default {
   name: "WeatherApp",
   data() {
     return {
+      logInUser: true,
+      signUpUser: false,
       lat: 0,
       long: 0,
       condition: "",
@@ -77,18 +93,26 @@ export default {
     };
   },
   components: {
-    AboutTolu,
+    logUserIn: Login,
+    signUserIn: SignIn,
   },
   methods: {
+    toSignIn() {
+      this.logInUser = false;
+      this.signUpUser = true;
+    },
+    toLogin() {
+      this.logInUser = true;
+      this.signUpUser = false;
+    },
     // API CALLS
-    getLocation() {
+    async getLocation() {
       navigator.geolocation.getCurrentPosition(this.weatherAPI);
     },
     async weatherAPI(collect: any) {
       this.lat = collect.coords.latitude;
       this.long = collect.coords.longitude;
       const url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${this.lat}%2C${this.long}`;
-      //   console.log(`URL: ${url}`);
       const parameters = {
         method: "GET",
         headers: {
@@ -111,12 +135,12 @@ export default {
         this.locationName = responseData.location.name;
         this.locationRegion = responseData.location.region;
       } catch (error) {
-        alert(error);
+        console.log(error);
       }
     },
   },
   async mounted() {
-    this.getLocation();
+    await this.getLocation();
   },
 };
 </script>
@@ -130,12 +154,23 @@ export default {
 p {
   margin: 0; /* Remove default margin from <p> */
 }
-.second-col {
-  min-height: 600px;
+.first-col {
+  min-height: 100vh;
   background-color: rgba(0, 0, 0, 0.863);
   font-weight: bold;
-  padding: 40px;
+  padding: 40px 0;
   text-align: center;
+}
+.second-col {
+  min-height: 100vh;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+}
+.button-div {
+  display: flex;
+  justify-content: space-between;
 }
 .body {
   color: whitesmoke;
